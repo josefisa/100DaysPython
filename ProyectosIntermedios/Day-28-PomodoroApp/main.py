@@ -1,3 +1,5 @@
+#   Creado por José Emanuel Figueroa.
+
 import tkinter as tk
 from tkinter import *
 import asyncio
