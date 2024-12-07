@@ -1,0 +1,50 @@
+import random
+
+from ASCII12GuessingNumber import logo,goodbye
+
+Secret_Number = random.randint(1,100)
+print("Welcome to the secret number guessing program!!!")
+print(f"\n Pssst, the number is {Secret_Number}")
+def difficulty():
+    loopClosing = True
+    while loopClosing:
+        level = input("\nPlease type the difficulty number \"easy\" or \"hard\":").lower()
+        if( level == "easy" or level == "hard"  ):
+            loopClosing = False
+            if level == "easy":
+                return False
+            if level == "hard":
+                return True    
+        else:
+            print("Please choose a valid option")
+    
+def asker(attempts):
+    User_number = 0
+    for i in range(attempts):
+        User_number = int(input("Please give me your number: "))
+        
+        if( (attempts - i )<3):
+            print("You are runnig out of attemps!! Come on, you can do it.")
+            
+        if(User_number == Secret_Number):
+            print("Hey! You just have won!")
+            return
+        else:    
+            if(User_number > Secret_Number):
+                print("Too high")
+            else:    
+                print("Too low")
+                            
+        if ((i+1) == attempts):
+            print("Uhh, you loose the game. Sorry")
+            return            
+
+print(f"{logo} \n\n")
+level = difficulty()    
+if level == True:    
+    attempts = 5
+else:
+    attempts = 10
+
+asker(attempts)            
+print(goodbye)
