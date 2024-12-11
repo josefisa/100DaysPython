@@ -1,10 +1,10 @@
-#   Creado por José Emanuel Figueroa.
-
-import tkinter as tk
+# Creado por José Emanuel Figueroa.
+# Apliación Pomodoro, contabilización y distribución de tiempo.
+ 
+import tkinter as tk 
 from tkinter import *
 import asyncio
 import math
-
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
@@ -18,6 +18,8 @@ SHORT_BREAK_MIN = 5 * 60
 LONG_BREAK_MIN = 20 * 60
 reps = 0
 timing = None
+runing = False
+
 # ---------------------------- TIMER RESET ------------------------------- #
 
 def resert_action():
@@ -32,10 +34,15 @@ def resert_action():
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def starter():
     global reps; reps += 1
+    global runing
+    
+    if runing == True:
+        ventana.after_cancel(timing)
     
     if reps == 8:
         upper_text.config(text="REST",foreground=RED)
         counter(LONG_BREAK_MIN)
+        runing = False
         return
     elif reps % 2 == 0:
         upper_text.config(text="BREAK",foreground=PINK)
@@ -48,7 +55,9 @@ def starter():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def counter(count):
-    global timing, reps 
+    global timing, reps
+    global runing
+    runing = True 
     minutes = math.floor(count/60)
     seconds = count%60
     
@@ -69,8 +78,9 @@ ventana.config(bg=YELLOW)
 
 canvas = Canvas(width=204, height=224,bg=YELLOW, highlightthickness=0)
 tomato_pic = PhotoImage(file="ProyectosIntermedios/Day-28-PomodoroApp/tomato.png")
+# tomato_pic = PhotoImage(file="tomato.png")
 canvas.create_image(102, 112, image=tomato_pic)
-#canvas.place(x =250, y = 200, anchor = CENTER)
+# canvas.place(x =250, y = 200, anchor = CENTER)
 display = canvas.create_text(102, 132, text= "00:00", font= ("Courier New", 36, "bold"), fill="white")
 canvas.place(x =250, y =200, anchor= CENTER)
 
