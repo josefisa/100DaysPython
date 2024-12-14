@@ -1,3 +1,7 @@
+# This archive is free use, for educational purposes.
+# Created by José Emanuel Figueroa Salgado
+# Enjoy it, is basically a password generator,and to store it in csv file.
+
 import tkinter as tk
 from tkinter import *
 import csv
