@@ -12,7 +12,7 @@ with smtplib.SMTP("smtp.gmail.com") as coneccion:
     mensaje = MIMEMultipart()
     mensaje['from'] = mi_correo
     mensaje['to'] = 'stalin.criollo.arg@outlook.com'
-    mensaje['subject'] = "¡Viva la libertad carajo"
+    mensaje['subject'] = "¡Viva la libertad carajo!"
     
     with open('ProyectosIntermedios/Day-32-Email_Dates/body.txt', 'r', encoding='utf-8') as file:
         cuerpo = file.read()
