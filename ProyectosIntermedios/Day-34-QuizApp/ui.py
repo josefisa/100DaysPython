@@ -17,14 +17,12 @@ class QuizGUI():
         self.score_display = Label(text="Score: 0", fg="white", background=THEME_COLOR)
         self.score_display.grid(row=0, column=1)
         
-        
         self.canvas = Canvas(width=300,height=300, bg="white")
         self.question_text = self.canvas.create_text(
             150, 150, text="Question", fill=THEME_COLOR,
             width=280,
             font=("Arial", 16, "bold"))
         self.canvas.grid(row=1, column=0, columnspan=2, pady=50)
-        
         
         true_image = PhotoImage(file="ProyectosIntermedios/Day-34-QuizApp/images/true.png")
         self.true_button = Button(image=true_image,highlightthickness=0, command=  self.true_press )
@@ -34,16 +32,16 @@ class QuizGUI():
         self.false_button = Button(image=false_image,highlightthickness=0, command=self.false_press)
         self.false_button.grid(row=2,column=1)    
         
-        self.get_next_question()
-        
-           
+        self.get_next_question()   
         
         self.window.mainloop()
+        
+        
         
     def get_next_question(self):
         self.canvas.config(bg="white")
         
-        if self.quiz.still_has_questions:
+        if self.quiz.still_has_questions():
             self.score_display.config(text=f"Score: {self.quiz.score} ")
             q_text = self.quiz.next_question()
             self.canvas.itemconfig(self.question_text,text=q_text)
@@ -53,11 +51,11 @@ class QuizGUI():
             self.false_button.config(state="disabled")
         
     def true_press(self):
-        self.give_feedback(self.quiz.check_answer("True"))  
+        self.give_feedback(self.quiz.check_answer(True))  
     
         
     def false_press(self):
-        self.give_feedback(self.quiz.check_answer("False"))
+        self.give_feedback(self.quiz.check_answer(False))
         
     def give_feedback(self, is_right):
         

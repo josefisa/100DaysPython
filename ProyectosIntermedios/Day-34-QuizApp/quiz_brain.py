@@ -9,7 +9,7 @@ class QuizBrain:
         self.current_question = None
 
     def still_has_questions(self):
-        return self.question_number < len(self.question_list)
+        return self.question_number < len(self.question_list)       
 
     def next_question(self):
         self.current_question = self.question_list[self.question_number]
@@ -20,8 +20,8 @@ class QuizBrain:
         # self.check_answer(user_answer)
 
     def check_answer(self, user_answer):
-        correct_answer = self.current_question.answer
-        if user_answer.lower() == correct_answer.lower()    :
+        correct_answer = eval(self.current_question.answer)
+        if user_answer == correct_answer:
             self.score += 1
             return True
         else:
