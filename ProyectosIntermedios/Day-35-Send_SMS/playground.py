@@ -33,8 +33,8 @@ timestamp = [item["dt_txt"] for item in data]
 client = Client(account_sid, auth_token)
 message = client.messages.create(
     body=f"Today {timestamp[0]} is goin to be {description[0]}",
-    from_="YOUR TWILIO VIRTUAL NUMBER",
-    to="YOUR TWILIO VERIFIED REAL NUMBER"
+    from_="MY_TWILIO number",
+    to="Another number"
 )
 
 print(message.status)
